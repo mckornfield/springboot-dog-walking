@@ -18,6 +18,10 @@ public class DogWalkingSchedulingController {
     @Autowired
     private List<DogWalker> dogWalkers;
 
+    DogWalkingSchedulingController(List<DogWalker> dogWalkers) {
+        this.dogWalkers = dogWalkers;
+    }
+
     @GetMapping("/walkers")
     public List<DogWalker> getDogWalkers() {
         return dogWalkers;
@@ -33,11 +37,11 @@ public class DogWalkingSchedulingController {
 
     @GetMapping("/walkers/{name}/dogs")
     public List<Dog> getWalkersDogs(@PathVariable String name) {
-         DogWalker dogWalker = dogWalkers.stream()
+        DogWalker dogWalker = dogWalkers.stream()
             .filter(walker -> Objects.equals(name, walker.getName()))
             .findFirst()
             .orElseThrow(NotFoundException::new);
-         return dogWalker.getDogs();
+        return dogWalker.getDogs();
     }
 
 }

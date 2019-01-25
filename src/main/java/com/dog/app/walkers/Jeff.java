@@ -14,7 +14,6 @@ public class Jeff implements DogWalker {
     @Qualifier(value = "pongo")
     private Dog dog;
 
-
     @Override
     public String getName() {
         return "Jeff";
